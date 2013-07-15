@@ -7,3 +7,9 @@
 [submodule "visuals/doctorpopular"]
 	path = visuals/doctorpopular
 	url = https://github.com/ControllingTransmission/doctorpopular.git
+[submodule "visuals/sacredgeo"]
+	path = visuals/sacredgeo
+	url = https://github.com/ControllingTransmission/sacredgeo.git
+[submodule "visuals/hues"]
+	path = visuals/hues
+	url = https://github.com/ControllingTransmission/hues.git
