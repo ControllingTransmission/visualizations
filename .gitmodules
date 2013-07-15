@@ -1,0 +1,9 @@
+[submodule "visuals/togetherwearerobots"]
+	path = visuals/togetherwearerobots
+	url = https://github.com/ControllingTransmission/togetherwearerobots.git
+[submodule "visuals/encowell"]
+	path = visuals/encowell
+	url = https://github.com/ControllingTransmission/encowell.git
+[submodule "visuals/doctorpopular"]
+	path = visuals/doctorpopular
+	url = https://github.com/ControllingTransmission/doctorpopular.git
