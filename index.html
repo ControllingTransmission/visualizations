@@ -9,7 +9,6 @@
     
     <script type="text/javascript" src="three.js/build/three.min.js"></script>
     <script type="text/javascript" src="three.js/examples/js/postprocessing/DotScreenPass.js"></script>
-    <script type="text/javascript" src="three.js/examples/js/postprocessing/DotScreenPass.js"></script>
     <script src="three.js/examples/js/postprocessing/EffectComposer.js"></script>
     <script src="three.js/examples/js/postprocessing/RenderPass.js"></script>
     <script src="three.js/examples/js/postprocessing/ShaderPass.js"></script>
@@ -83,40 +82,37 @@
       if(window!==top){
         document.body.classList.add('iframe');
       }
-      // document.querySelector('#mode-visual').addEventListener('click',tester.updateMode,false);
-      // document.querySelector('#mode-raw').addEventListener('click',tester.updateMode,false);
-      // tester.init();
-      // gamepadSupport.init();
-      var gamepad = new Gamepad();
-      $(document).ready(function(){
-                
-        if (!gamepad.init()) {
-          alert('Your browser does not support gamepads, get the latest Google Chrome or Firefox.');
-        }
-        
-        game = null;
-        menu.init();
-                
-       /* var stats = new Stats();
-        stats.setMode(0); // 0: fps, 1: ms
-
-        // Align top-left
-        stats.domElement.style.position = 'absolute';
-        stats.domElement.style.left = '0px';
-        stats.domElement.style.top = '0px';
-
-        document.body.appendChild( stats.domElement );
-
-        setInterval( function () {
-
-            stats.begin();
-
-            // your code goes here
-
-            stats.end();
-
-        }, 1000 / 60 ); */
-      });
+      
+      // Initialize with error handling
+      try {
+        var gamepad = new Gamepad();
+        $(document).ready(function(){
+          try {
+            if (!gamepad.init()) {
+              console.warn('Gamepad support not available - using keyboard controls only');
+            }
+            
+            game = null;
+            
+            // Check if menu object exists before initializing
+            if (typeof menu !== 'undefined' && menu.init) {
+              menu.init();
+            } else {
+              console.error('Menu system not available');
+            }
+          } catch (e) {
+            console.error('Error during initialization:', e);
+            // Show a user-friendly message
+            document.body.innerHTML = '<div style="color: white; text-align: center; margin-top: 50px;">' +
+              '<h1>Demo Loading Error</h1>' +
+              '<p>There was an error loading the demo. Please check the browser console for details.</p>' +
+              '<p>Try refreshing the page or using a different browser.</p>' +
+              '</div>';
+          }
+        });
+      } catch (e) {
+        console.error('Critical error during setup:', e);
+      }
     </script>
   </body>
 </html>

@@ -96,18 +96,33 @@ var menu = {
         menu.gameSelection = MinusBaby;
         break;
       case 'robots':
-        window.location = window.location.href.replace('index.html', '')+'visuals/togetherwearerobots/index.html';
-        break;
+        // Instead of trying to navigate to a non-existent file, show a message
+        alert('Robots visualization is not yet implemented. Use the grids or bars visualizations instead.');
+        return;
       case 'galaxies':
-        window.location = window.location.href.replace('index.html', '')+'visuals/_spacetownsavior.html';
+        try {
+          var baseUrl = window.location.href.replace(/\/[^/]*$/, '/');
+          window.location = baseUrl + 'visuals/_spacetownsavior.html';
+        } catch(e) {
+          console.error('Failed to navigate to galaxies:', e);
+          alert('Navigation error. Please try refreshing the page.');
+        }
         break;
       case 'shapes':
-        window.location = window.location.href.replace('index.html', '')+'visuals/_steve.html';
+        try {
+          var baseUrl = window.location.href.replace(/\/[^/]*$/, '/');
+          window.location = baseUrl + 'visuals/_steve.html';
+        } catch(e) {
+          console.error('Failed to navigate to shapes:', e);
+          alert('Navigation error. Please try refreshing the page.');
+        }
         break;
       default:
         return;
     }
-    menu.indicateSelection();
+    if (menu.gameSelection) {
+      menu.indicateSelection();
+    }
   },
   
   indicateSelection: function(){
